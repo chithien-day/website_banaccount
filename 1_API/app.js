@@ -5,3 +5,12 @@ const app = express();
 
 //Routes
 
+app.get("/", (req,res) => {
+    res.send("Hello World")
+});
+
+app.get("/posts", (req, res) => {
+    res.send("Posts")
+});
+
+app.listen(3000);
