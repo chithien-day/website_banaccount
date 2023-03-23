@@ -9,3 +9,5 @@ db.url = dbConfig.url;
 db.main = require("./main.model.js")(mongoose);
 
 module.exports = db;
+
+//comment này mang tính chất chạy deadline
