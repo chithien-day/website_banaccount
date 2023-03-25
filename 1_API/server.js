@@ -34,6 +34,7 @@ db.mongoose
 //swagger(app);
 
 require("./app/routes/game.routes")(app);
+require("./app/routes/account.routes")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
