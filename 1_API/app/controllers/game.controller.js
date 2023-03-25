@@ -89,11 +89,11 @@ exports.delete = (req, res) => {
             res.status(404).send({
               message: `Không thể cập nhật game với id= ${id}. ID có thể không tồn tại`
             });
-          } else res.send({ message: "Cập nhật thành công" });
+          } else res.send({ message: "Xóa thành công" });
         })
         .catch(err => {
           res.status(500).send({
-            message: "Lỗi cập nhật game với id=" + id
+            message: "Lỗi xóa game với id=" + id
           });
       });
 };
@@ -102,7 +102,7 @@ exports.deleteAll = (req, res) => {
     Game.deleteMany({})
     .then(data => {
       res.send({
-        message: `${data.deletedCount} Toàn bộ dữ liệu game đã được xóa!`
+        message: `Đã xóa tất cả (${data.deletedCount} game)!`
       });
     })
     .catch(err => {

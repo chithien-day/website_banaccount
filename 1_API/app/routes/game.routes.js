@@ -1,24 +1,19 @@
 module.exports = app => {
-    const games = require("../controllers/game.controller.js");
+  const accounts = require("../controllers/game.controller.js");
 
-    var router = require("express").Router();
-     // Create a new Tutorial
-  router.post("/", games.create);
+  var router = require("express").Router();
+  
+  router.post("/", accounts.create);
 
-  // Retrieve all games
-  router.get("/", games.findAll);
+  router.get("/", accounts.findAll);
 
-  // Retrieve a single Tutorial with id
-  router.get("/:id", games.findOne);
+  router.get("/:id", accounts.findOne);
 
-  // Update a Tutorial with id
-  router.put("/:id", games.update);
+  router.put("/:id", accounts.update);
 
-  // Delete a Tutorial with id
-  router.delete("/:id", games.delete);
+  router.delete("/:id", accounts.delete);
 
-  // Delete all games
-  router.delete("/", games.deleteAll);
+  router.delete("/", accounts.deleteAll);
 
   app.use('/api/games', router);
 };

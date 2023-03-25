@@ -7,5 +7,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.games = require("./game.model.js")(mongoose);
+db.accounts = require("./account.model.js")(mongoose);
 
 module.exports = db;
