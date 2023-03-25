@@ -6,8 +6,6 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.main = require("./main.model.js")(mongoose);
+db.games = require("./game.model.js")(mongoose);
 
 module.exports = db;
-
-//comment này mang tính chất chạy deadline
