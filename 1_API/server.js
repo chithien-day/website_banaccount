@@ -14,20 +14,23 @@ const swagger = require("./swagger");
 
 //connect to db
 const db = require("./app/models");
+const dbConfig = require("./app/config/db.config");
+const Role = db.role;
 db.mongoose
-  .connect(db.url, {
+  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log("Successfully connect to MongoDB.");
+    initial();
   })
   .catch(err => {
-    console.log("Cannot connect to the database!", err);
+    console.error("Connection error", err);
     process.exit();
   });
 
-//Routes test port
+// //Routes test port
 // app.get("/", (req,res) => {
 //     res.json({message: "Hello World"});
 // });
@@ -35,43 +38,23 @@ db.mongoose
 //swagger(app);
 
 //jwt
-const Role = db.role;
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
+  async function initial() {
+    const count = await Role.estimatedDocumentCount()
+    if (count === 0) {
+      await new Role({
+        name: "user",
+      }).save();
 
-        console.log("added 'user' to roles collection");
-      });
+      await new Role({
+        name:"moderator"
+      }).save();
 
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
-
-      new Role({
-        name: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
-    }
-  });
+      await new Role({
+        name:"admin"
+      }).save();
+  }
 }
-
+      
 //main db
 require("./app/routes/game.routes")(app);
 require("./app/routes/account.routes")(app);
