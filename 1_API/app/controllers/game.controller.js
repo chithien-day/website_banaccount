@@ -113,7 +113,3 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-
-// exports.findAllPublished = (req, res) => {
-  
-// };

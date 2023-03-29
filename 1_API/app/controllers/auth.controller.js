@@ -5,6 +5,7 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+
 exports.signup = async (req, res) => {
   try {
     const user = new User({
@@ -28,6 +29,34 @@ exports.signup = async (req, res) => {
     }
 
     res.send({ message: "User was registered successfully!" });
+  } catch (err) {
+    res.status(500).send({ message: err });
+  }
+};
+
+exports.adsignup = async (req, res) => {
+  try {
+    const user = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8),
+    });
+    await user.save();
+
+    if (req.body.roles) {
+      const roles = await Role.find({
+        name: { $in: req.body.roles },
+      });
+
+      user.roles = roles.map((role) => role._id);
+      await user.save();
+    } else {
+      const role = await Role.findOne({ name: "admin" });
+      user.roles = [role._id];
+      await user.save();
+    }
+
+    res.send({ message: "User admin was registered successfully!" });
   } catch (err) {
     res.status(500).send({ message: err });
   }

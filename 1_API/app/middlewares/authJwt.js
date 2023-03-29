@@ -40,6 +40,8 @@ isAdmin = (req, res, next) => {
         for (let i = 0; i < roles.length; i++) {
           if (roles[i].name === "admin") {
             next();
+            res.status(200).send({ message: "Require Admin kd Role!" });
+            next();
             return;
           }
         }
