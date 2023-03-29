@@ -33,7 +33,7 @@
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Game'
+ *                 $ref: '#/components/schemas/Games'
  *   post:
  *     summary: Create a new game
  *     tags: [Games]
@@ -52,9 +52,21 @@
  *               $ref: '#/components/schemas/Games'
  *       500:
  *         description: Some server error
+ *   delete:
+ *     summary: Delete all the games
+ *     tags: [Games]
+ *     responses:
+ *       200:
+ *         description: Delete all games
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Games'
  * /games/{id}:
  *   get:
- *     summary: Get the book by id
+ *     summary: Get the game by id
  *     tags: [Games]
  *     parameters:
  *       - in: path
@@ -62,18 +74,18 @@
  *         schema:
  *           type: string
  *         required: true
- *         description: The book id
+ *         description: The game id
  *     responses:
  *       200:
- *         description: The book response by id
+ *         description: The game response by id
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Game'
+ *               $ref: '#/components/schemas/Games'
  *       404:
- *         description: The book was not found
+ *         description: The game was not found
  *   put:
- *    summary: Update the book by the id
+ *    summary: Update the game by the id
  *    tags: [Games]
  *    parameters:
  *      - in: path
@@ -81,7 +93,7 @@
  *        schema:
  *          type: string
  *        required: true
- *        description: The book id
+ *        description: The game id
  *    requestBody:
  *      required: true
  *      content:
@@ -90,17 +102,17 @@
  *            $ref: '#/components/schemas/Games'
  *    responses:
  *      200:
- *        description: The book was updated
+ *        description: The game was updated
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Games'
  *      404:
- *        description: The book was not found
+ *        description: The game was not found
  *      500:
  *        description: Some error happened
  *   delete:
- *     summary: Remove the book by id
+ *     summary: Remove the game by id
  *     tags: [Games]
  *     parameters:
  *       - in: path

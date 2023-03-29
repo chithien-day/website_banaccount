@@ -72,6 +72,18 @@
  *               $ref: '#/components/schemas/Accounts'
  *       500:
  *         description: Some server error
+ *   delete:
+ *     summary: Delete all the accounts
+ *     tags: [Accounts]
+ *     responses:
+ *       200:
+ *         description: Delete all accounts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Accounts'
  * /accounts/{id}:
  *   get:
  *     summary: Get the account by id
@@ -89,7 +101,7 @@
  *         contens:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/accounts'
+ *               $ref: '#/components/schemas/Accounts'
  *       404:
  *         description: The account was not found
  *   put:
