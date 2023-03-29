@@ -1,3 +1,122 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Games:
+ *       type: object
+ *       required:
+ *         - name
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the game
+ *         name:
+ *           type: string
+ *           description: The title of your game
+ *       example:
+ *         name: Genshin
+ */
+/**
+ * @swagger
+ * tags:
+ *   name: Games
+ *   description: The games managing API
+ * /games:
+ *   get:
+ *     summary: Lists all the games
+ *     tags: [Games]
+ *     responses:
+ *       200:
+ *         description: The list of the games
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Game'
+ *   post:
+ *     summary: Create a new game
+ *     tags: [Games]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Games'
+ *     responses:
+ *       200:
+ *         description: The created game.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Games'
+ *       500:
+ *         description: Some server error
+ * /games/{id}:
+ *   get:
+ *     summary: Get the book by id
+ *     tags: [Games]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The book id
+ *     responses:
+ *       200:
+ *         description: The book response by id
+ *         contens:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Game'
+ *       404:
+ *         description: The book was not found
+ *   put:
+ *    summary: Update the book by the id
+ *    tags: [Games]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The book id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Games'
+ *    responses:
+ *      200:
+ *        description: The book was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Games'
+ *      404:
+ *        description: The book was not found
+ *      500:
+ *        description: Some error happened
+ *   delete:
+ *     summary: Remove the book by id
+ *     tags: [Games]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The game id
+ *
+ *     responses:
+ *       200:
+ *         description: The game was deleted
+ *       404:
+ *         description: The game was not found
+ */
+
 module.exports = app => {
   const accounts = require("../controllers/game.controller.js");
 
