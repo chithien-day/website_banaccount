@@ -1,4 +1,3 @@
-
 const db = require("../models");
 const Game = db.games;
 
