@@ -1,10 +1,6 @@
 /**
  * @swagger
  * components:
- *   securitySchemes:
- *     BearerAuth:
- *       type: http
- *       scheme: bearer
  *   schemas:
  *     Games:
  *       type: object
@@ -27,8 +23,6 @@
  *   description: The games managing API
  * /games:
  *   get:
- *     sercurity:
- *       - BearerAuth: [admin]
  *     summary: Lists all the games
  *     tags: [Games]
  *     responses:
