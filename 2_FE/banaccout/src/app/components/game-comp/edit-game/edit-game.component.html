@@ -3,20 +3,20 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm chức vụ</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm tựa game mới</h1>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">close</button> -->
         </div>
         <div class="modal-body">
             <div class="mb-3">
               <label>Tên game</label>
-              <input type="text" class="form-control" [(ngModel)]="tmp.name" placeholder="Tên chức vụ">
+              <input type="text" class="form-control" [(ngModel)]="tmp.name" placeholder="Tên game">
             </div>
         </div>
         <div class="modal-footer">
-          <button (click)="add(tmp)" *ngIf="!tmp.id" class="btn btn-primary">Thêm chức vụ</button>
-          <button (click)="deleteg(tmp)" *ngIf="tmp.id" class="btn btn-danger">Xóa chức vụ</button>
-          <button (click)="update(tmp)" *ngIf="tmp.id" class="btn btn-primary">Sửa chức vụ</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+          <button (click)="add(tmp)" *ngIf="!tmp.id" class="btn btn-primary">Thêm tựa game mới</button>
+          <button (click)="deleteg(tmp)" *ngIf="tmp.id" class="btn btn-danger">Xóa tựa game này</button>
+          <button (click)="update(tmp)" *ngIf="tmp.id" class="btn btn-primary">Sửa tựa game này</button>
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button> -->
         </div>
       </div>
     </div>
