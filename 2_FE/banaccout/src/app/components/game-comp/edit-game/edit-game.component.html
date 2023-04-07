@@ -1,0 +1,24 @@
+<div *ngIf="tmp">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm chức vụ</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label>Tên game</label>
+              <input type="text" class="form-control" [(ngModel)]="tmp.name" placeholder="Tên chức vụ">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="add(tmp)" *ngIf="!tmp.id" class="btn btn-primary">Thêm chức vụ</button>
+          <button (click)="deleteg(tmp)" *ngIf="tmp.id" class="btn btn-danger">Xóa chức vụ</button>
+          <button (click)="update(tmp)" *ngIf="tmp.id" class="btn btn-primary">Sửa chức vụ</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

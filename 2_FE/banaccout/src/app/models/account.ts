@@ -1,7 +1,7 @@
 export class account {
-  id_gametype = '';
-  description = '';
-  game_picture = '';
-  gameusername = '';
-  gamepass = '';
+  id_gametype?: any;
+  description?: string;
+  game_picture?: string;
+  gameusername?: string;
+  gamepass?: string;
 }
