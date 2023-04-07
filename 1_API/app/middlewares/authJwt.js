@@ -7,7 +7,7 @@ const Role = db.role;
 verifyToken = async (req, res, next) => {
   try {
     const token = req.headers["x-access-token"];
-
+    //const token = req.headers.authorization.split(' ')[1];
     if (!token) {
       return res.status(403).send({ message: "No token provided!" });
     }
@@ -57,23 +57,6 @@ isModerator = async (req, res, next) => {
     res.status(500).send({ message: err });
   }
 };
-
-function checkRole(role) {
-  return (req, res, next) => {
-    const token = req.headers.authorization;
-    
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) {
-        return res.status(401).json({ message: 'Unauthorized' });
-      }
-      
-      if (decoded.role !== role) {
-        return res.status(403).json({ message: 'Forbidden' });
-      }
-      next();
-    });
-  };
-}
 // isUser = async (req, res, next) => {
 //   try {
 //     const user = await User.findById(req.userId).exec();

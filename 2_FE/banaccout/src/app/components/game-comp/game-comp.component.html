@@ -1,0 +1,38 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Game</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+           <li class="breadcrumb-item active">Game</li>
+        </ol>
+     </nav>
+  </div>
+
+  <button (click)="init()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Thêm chức vụ
+  </button>
+
+  <table class = "table table-striped table-hover mt-2">
+    <thead>
+      <th>
+        ID game
+      </th>
+
+      <th>
+        Tên game
+      </th>
+
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let g of tmp">
+        <td>{{g.id}}</td>
+        <td>{{g.name}}</td>
+        <td (click)="sua(g)" class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-edit-game [tmp]="updatetmp" (updatetmp)="updatefunc($event)"></app-edit-game>
+</main>
