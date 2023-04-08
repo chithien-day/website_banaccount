@@ -129,6 +129,9 @@
  *         description: The game was not found
  */
 
+const { adminBoard } = require("../controllers/user.controller.js");
+const { verifyToken } = require("../middlewares/authJwt.js");
+
 module.exports = app => {
   const accounts = require("../controllers/game.controller.js");
 
@@ -136,15 +139,16 @@ module.exports = app => {
   
   router.post("/", accounts.create);
 
-  router.get("/", accounts.findAll);
+  router.get("/",accounts.findAll);
 
-  router.get("/:id", accounts.findOne);
+  // Authorize
+  router.get("/:id", verifyToken, accounts.findOne, adminBoard);
 
   router.put("/:id", accounts.update);
 
-  router.delete("/:id", accounts.delete);
+  router.delete("/:id", accounts.delete );
 
-  router.delete("/", accounts.deleteAll);
+  router.delete("/",verifyToken, accounts.deleteAll, adminBoard);
 
   app.use('/api/games', router);
 };
