@@ -1,5 +1,7 @@
+const { verifyToken, isAdmin, isModerator } = require("../middlewares/authJwt");
 const db = require("../models");
 const Game = db.games;
+const user = require("../models/")
 
 exports.create = (req, res) => {
   if (!req.body.name) {
@@ -24,10 +26,10 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
     const name = req.query.name;
-    var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
-  
+    var condition = await name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
+
     Game.find(condition)
       .then(data => {
         res.send(data);
